@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Egészség Hírek — A mézes recept, amelyről egyre többen beszélnek</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Source Sans 3',sans-serif;background:#fff;color:#222;line-height:1.75;font-size:15px;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+
+/* === TOP NAV BAR — estilo portal === */
+.topbar{background:#1a1a1a;padding:6px 0}
+.topbar-inner{max-width:680px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+.topbar-logo{font-family:'Merriweather',serif;font-size:13px;color:#fff;font-weight:700;letter-spacing:.5px}
+.topbar-logo span{color:#e8a84c}
+.topbar-date{font-size:10px;color:#999;letter-spacing:.3px}
+
+/* === BREADCRUMB === */
+.breadcrumb{max-width:680px;margin:0 auto;padding:8px 20px;font-size:10px;color:#888;border-bottom:1px solid #eee}
+.breadcrumb a{color:#e8a84c;text-decoration:none}.breadcrumb a:hover{text-decoration:underline}
+
+/* === ARTICLE CONTAINER === */
+.article{max-width:680px;margin:0 auto;padding:0 20px}
+
+/* === HERO SECTION — full width image with overlay === */
+.hero-wrap{position:relative;margin:0 -20px;overflow:hidden}
+.hero-wrap img{width:100%;height:auto;cursor:pointer;transition:opacity .2s}
+.hero-wrap img:hover{opacity:.9}
+.hero-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.75));padding:20px 24px 16px}
+.hero-tag{display:inline-block;background:#e8a84c;color:#1a1a1a;font-size:8px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:6px}
+.hero-title{font-family:'Merriweather',serif;font-size:20px;line-height:1.35;color:#fff;font-weight:700}
+
+/* === ARTICLE META === */
+.art-meta{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #eee;font-size:10px;color:#888}
+.art-meta .author{font-weight:500;color:#444}
+.art-meta .dot{color:#ccc}
+
+/* === CTA PRINCIPAL — grande e destacado === */
+.cta-main{margin:14px 0;padding:18px 20px;background:linear-gradient(135deg,#e8a84c,#d4922e);border-radius:6px;text-align:center;box-shadow:0 4px 16px rgba(232,168,76,.35)}
+.cta-main h2{font-family:'Merriweather',serif;font-size:17px;color:#fff;margin-bottom:3px;font-weight:700;line-height:1.35}
+.cta-main p{font-size:12.5px;color:rgba(255,255,255,.85);margin-bottom:10px;font-weight:300}
+.cta-main .cta-btn-big{display:inline-block;background:#1a1a1a;color:#fff;padding:13px 36px;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:5px;transition:all .25s;box-shadow:0 3px 10px rgba(0,0,0,.2)}
+.cta-main .cta-btn-big:hover{background:#fff;color:#1a1a1a;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.cta-main small{display:block;margin-top:6px;font-size:8px;color:rgba(255,255,255,.6)}
+/* === CTA BOTTOM btn === */
+.cta-btn{display:inline-block;background:#e8a84c;color:#1a1a1a;padding:12px 30px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:5px;transition:all .25s}
+.cta-btn:hover{background:#fff;color:#1a1a1a;transform:translateY(-1px)}
+
+/* === BODY TEXT === */
+.art-body{padding:4px 0}
+.art-body p{margin-bottom:12px;font-weight:300;font-size:14.5px;color:#333}
+.art-body strong{color:#1a1a1a;font-weight:500}
+
+/* === INLINE IMAGE with caption === */
+.art-fig{margin:16px 0;border-radius:4px;overflow:hidden;border:1px solid #eee}
+.art-fig img{cursor:pointer;transition:opacity .2s}.art-fig img:hover{opacity:.9}
+.art-fig figcaption{padding:6px 10px;font-size:9px;color:#888;background:#fafafa;font-style:italic;border-top:1px solid #eee}
+
+/* === PULL QUOTE — estilo jornal === */
+.pull-quote{margin:16px 0;padding:14px 18px;position:relative;background:#fafafa;border-top:3px solid #e8a84c;border-bottom:1px solid #eee}
+.pull-quote p{font-family:'Merriweather',serif;font-size:14px;font-style:italic;color:#444;line-height:1.6;margin-bottom:4px}
+.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#888;font-style:normal;letter-spacing:.3px}
+
+/* === INFO BOX — estilo "saiba mais" === */
+.info-box{margin:16px 0;padding:12px 14px;background:#f8f8f8;border-left:4px solid #e8a84c;border-radius:0 4px 4px 0}
+.info-box h3{font-family:'Merriweather',serif;font-size:13px;color:#1a1a1a;margin-bottom:4px;font-weight:700}
+.info-box ul{list-style:none;padding:0}
+.info-box ul li{font-size:12.5px;color:#555;padding:3px 0;padding-left:14px;position:relative;font-weight:300}
+.info-box ul li::before{content:'';position:absolute;left:0;top:10px;width:5px;height:5px;background:#e8a84c;border-radius:50%}
+
+/* === TAGS === */
+.tags{margin:14px 0;padding:10px 0;border-top:1px solid #eee;border-bottom:1px solid #eee;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tags-label{font-size:9px;color:#888;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.tag{font-size:9px;color:#666;background:#f4f4f4;padding:3px 8px;border-radius:2px;text-decoration:none}
+.tag:hover{background:#e8a84c;color:#1a1a1a}
+
+/* === CTA BOTTOM — estilo "relacionado" === */
+.cta-related{margin:14px 0;padding:14px;background:#1a1a1a;border-radius:4px;text-align:center}
+.cta-related p{font-family:'Merriweather',serif;font-size:13px;color:#fff;margin-bottom:2px;font-weight:700}
+.cta-related span{font-size:10.5px;color:#aaa;display:block;margin-bottom:8px;font-weight:300}
+.cta-related .cta-btn{background:#e8a84c;color:#1a1a1a;padding:9px 24px}
+.cta-related .cta-btn:hover{background:#fff;color:#1a1a1a}
+.cta-related small{display:block;margin-top:5px;font-size:7.5px;color:#666}
+
+/* === DISCLAIMER === */
+.disc{font-size:8.5px;color:#999;margin:14px 0;padding:10px 12px;background:#fafafa;border:1px solid #eee;border-radius:3px;line-height:1.6}
+
+/* === FOOTER === */
+footer{max-width:680px;margin:0 auto;padding:14px 20px;text-align:center;font-size:8px;color:#aaa;border-top:1px solid #eee}
+footer a{color:#e8a84c;text-decoration:none}footer a:hover{text-decoration:underline}
+
+@media(max-width:600px){
+.hero-title{font-size:17px}
+.cta-main h2{font-size:15px}
+.article{padding:0 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV BAR -->
+<div class="topbar">
+<div class="topbar-inner">
+<div class="topbar-logo">Egészség <span>Hírek</span></div>
+<div class="topbar-date" id="dt"></div>
+</div>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+<a href="#">Főoldal</a> &rsaquo; <a href="#">Egészség</a> &rsaquo; <a href="#">Természetes módszerek</a> &rsaquo; Mézes recept
+</div>
+
+<article class="article">
+
+<!-- HERO IMAGE with overlay title -->
+<div class="hero-wrap">
+<a href="https://lp.formulahype.shop/preclick"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663297503148/jCMGTU5NUP78zZrraNsLhW/mem11-honey-closeup-hero-UKKJFM2AeUCDKovLddQw9X.webp" alt="Akácméz közelről — arany méz dióval és kamillával"></a>
+<div class="hero-overlay">
+<span class="hero-tag">Egészség & Természet</span>
+<h1 class="hero-title">A piaci mézes keverék, amelyről a Nagyvásárcsarnok vásárlói suttognak</h1>
+</div>
+</div>
+
+<!-- ARTICLE META -->
+<div class="art-meta">
+<span class="author">Kovács Mária, egészségügyi újságíró</span>
+<span class="dot">·</span>
+<span id="dt2"></span>
+<span class="dot">·</span>
+<span>2 perc olvasás</span>
+</div>
+
+<!-- CTA 1 — GRANDE E DESTACADO -->
+<div class="cta-main">
+<h2>&#9654; Nézd meg a teljes mézes receptet videóban</h2>
+<p>A piaci méhészek formulája — lépésről lépésre bemutatva</p>
+<a href="https://lp.formulahype.shop/preclick" class="cta-btn-big">Videó megtekintése most &rarr;</a>
+<small>Ingyenes tájékoztató tartalom</small>
+</div>
+
+<!-- BODY TEXT -->
+<div class="art-body">
+
+<p>A <strong>budapesti Nagyvásárcsarnok</strong> egyik rejtett standján — a fűszeres és mézes árusok között — egy különleges keverékre bukkantunk. A helyi vásárlók között egyre nagyobb az érdeklődés egy <strong>hagyományos mézes formula</strong> iránt, amelyet állítólag már generációk óta készítenek.</p>
+
+<p>Az összetétel meglepően egyszerű: <strong>akácméz, dió, kamilla és fahéj</strong>. A piaci árusok szerint a keveréket éhgyomorra, reggel kell bevenni — és sokan számolnak be arról, hogy <strong>élesebbnek érzik az elméjüket</strong> a rendszeres fogyasztás óta.</p>
+
+</div>
+
+<!-- PULL QUOTE -->
+<div class="pull-quote">
+<p>„Évtizedek óta járok a Nagyvásárcsarnokba. Ezt a mézes keveréket egy idős árus ajánlotta nekem két éve. Azóta minden reggel ezzel kezdem a napot — és az emlékezetem sokkal jobb lett."</p>
+<cite>— Szabó István, 68 éves, Budapest, XII. kerület</cite>
+</div>
+
+<!-- INLINE IMAGE -->
+<figure class="art-fig">
+<a href="https://lp.formulahype.shop/preclick"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663297503148/jCMGTU5NUP78zZrraNsLhW/mem11-doctor-honey-study-BqvxZEk7mi7UHFjoeMhARc.webp" alt="Orvos vizsgálja a méz hatásait"></a>
+<figcaption>Fotó: Egészség Hírek — Egy budapesti szakember a méz természetes hatásait vizsgálja</figcaption>
+</figure>
+
+<div class="art-body">
+
+<p>A téma iránt az egészségügyi szakemberek is érdeklődnek. Bár a <strong>méz és a dió</strong> jótékony hatásai régóta ismertek, az a mód, ahogyan a piaci árusok kombinálják ezeket az összetevőket, különleges figyelmet kap.</p>
+
+<p>A <strong>Semmelweis Egyetem</strong> közelében, a <strong>Józsefváros</strong> piacain és a <strong>Buda</strong> oldali kis boltokban is feltűnt ez a keverék. Úgy tűnik, a hagyomány a <strong>Hortobágy</strong> és a <strong>Bükk-hegység</strong> környéki méhészektől ered.</p>
+
+</div>
+
+<!-- INFO BOX -->
+<div class="info-box">
+<h3>Amit a videóból megtudhat:</h3>
+<ul>
+<li>A pontos mézes keverék receptje — lépésről lépésre</li>
+<li>Miért pont akácméz, dió, kamilla és fahéj</li>
+<li>Hogyan fogyassza helyesen — és mikor a legjobb időpont</li>
+<li>A piaci árusok és méhészek tapasztalatai</li>
+</ul>
+</div>
+
+<!-- TAGS -->
+<div class="tags">
+<span class="tags-label">Címkék:</span>
+<a href="#" class="tag">méz</a>
+<a href="#" class="tag">emlékezet</a>
+<a href="#" class="tag">természetes módszerek</a>
+<a href="#" class="tag">Budapest</a>
+<a href="#" class="tag">Nagyvásárcsarnok</a>
+<a href="#" class="tag">hagyomány</a>
+</div>
+
+<!-- CTA 2 — estilo "conteúdo relacionado" -->
+<div class="cta-related">
+<p>Nézze meg a teljes receptet videóban</p>
+<span>A piaci méhészek formulája — részletesen bemutatva</span>
+<a href="https://lp.formulahype.shop/preclick" class="cta-btn">Videó megtekintése &rarr;</a>
+<small>Ingyenes tájékoztató tartalom</small>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disc">
+<strong>Jogi nyilatkozat:</strong> Ez a cikk kizárólag tájékoztató jellegű, és nem minősül orvosi tanácsadásnak. Az étrend-kiegészítők nem helyettesítik a változatos étrendet és az egészséges életmódot. Az eredmények egyénenként eltérőek lehetnek. Mielőtt bármilyen változtatást eszközölne étrendjében, konzultáljon egészségügyi szakemberrel. A cikkben szereplő vélemények az olvasók személyes tapasztalatait tükrözik.
+</div>
+
+</article>
+
+<footer>
+<p><a href="privacy.html">Adatvédelem</a> &middot; <a href="terms.html">Felhasználási feltételek</a> &middot; <a href="#">Szerkesztőség</a></p>
+<p style="margin-top:3px">© 2026 Egészség Hírek &middot; CNPJ: 64.743.209/0001-28</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){var d=new Date(),m=['január','február','március','április','május','június','július','augusztus','szeptember','október','november','december'];var ds=d.getFullYear()+'. '+m[d.getMonth()]+' '+d.getDate()+'.';document.getElementById('dt').textContent=ds;var dt2=document.getElementById('dt2');if(dt2)dt2.textContent=ds;});
+(function(){var q=window.location.search;if(!q)return;document.querySelectorAll('a[href]').forEach(function(a){var h=a.getAttribute('href');if(!h||h.startsWith('#')||h.startsWith('mailto:'))return;a.setAttribute('href',h.includes('?')?h+'&'+q.substring(1):h+q)})})();
+</script>
+<script type="text/javascript" src="https://lp.formulahype.shop/pretrack.js?rtkcmpid=69e15ac74a4292f361ddd85d"></script>
+</body>
+</html>
